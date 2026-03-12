@@ -8,23 +8,31 @@
 </head>
 <body>
     <div id="container">
-        <button>Generate new image: </button>
+        <label for="new-image">Enter New GIF: </label>
+        <input type="text" id="new-image"/>
+        <button>Generate</button>
         <img src="#">
     </div>
-    
 
     <script>
         const btn = document.querySelector("button");
         btn.addEventListener("click", (event) => {
-            const img = document.querySelector('img');
-        fetch('https://api.giphy.com/v1/gifs/translate?api_key=pHVxU6gX6tTqrrhEkCr8jhpw2wA2gEt5&s=cats')
-            .then(function (response) {
-                return response.json();
-            })
-            .then(function (response) {
-                img.src = response.data.images.original.url;
+            const input = document.querySelector("#new-image");
+            const nameGif = input.value.trim();
+            if (nameGif === "") {
+                alert("You cannot enter only space!");
+                input.focus();
+                return; 
+            }
+            const img = document.querySelector('#container img');
+            fetch('https://api.giphy.com/v1/gifs/translate?api_key=pHVxU6gX6tTqrrhEkCr8jhpw2wA2gEt5&s=' + nameGif)
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (response) {
+                    img.src = response.data.images.original.url;
+                });
             });
-        });
 
 
         
