@@ -1,0 +1,18 @@
+body {
+    font: 1em sans-serif;
+    width: 500px;
+    padding: 20px;
+    margin: 0 auto;
+}
+
+#container{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+button{
+    padding: 10px;
+    width: 200px;
+    align-self: center;
+}
