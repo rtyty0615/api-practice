@@ -27,17 +27,19 @@
             const img = document.querySelector('#container img');
             fetch('https://api.giphy.com/v1/gifs/translate?api_key=pHVxU6gX6tTqrrhEkCr8jhpw2wA2gEt5&s=' + nameGif)
                 .then(function (response) {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
                     return response.json();
                 })
                 .then(function (response) {
                     img.src = response.data.images.original.url;
-                });
+                })
+                .catch ((error) => {
+                console.error("Error fetching the image:", error);
+                })
             });
-
-
-        
     </script>
 
-    
 </body>
 </html>
